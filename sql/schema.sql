@@ -1,10 +1,11 @@
-drop table departments cascade; 
-drop table dept_managers cascade; 
-drop table dept_emp cascade; 
-drop table employees cascade; 
-drop table salaries cascade; 
-drop table titles cascade; 
+-- drop table departments cascade; 
+-- drop table dept_managers cascade; 
+-- drop table dept_emp cascade; 
+-- drop table employees cascade; 
+-- drop table salaries cascade; 
+-- drop table titles cascade; 
 
+-- Create table schemas
 CREATE TABLE "employees" (
     "emp_no" INTEGER   NOT NULL,
     "birth_Date" DATE   NOT NULL,
@@ -53,6 +54,7 @@ CREATE TABLE "dept_emp" (
     "to_date" DATE   NOT NULL
 );
 
+-- Establish foriegn keys between tables
 ALTER TABLE "dept_managers" ADD CONSTRAINT "fk_dept_managers_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
@@ -71,8 +73,12 @@ REFERENCES "employees" ("emp_no");
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "departments" ("dept_no");
 
-select * from "employees";
+-- Test tables--------------------
+-- select * from "employees";
+----------------------------------
 
+-- Load data from CSV's into each table ----------------
+--------------------------------------------------------
 copy "departments" from 'C:\data\departments.csv'
 with (format CSV, HEADER);
 
